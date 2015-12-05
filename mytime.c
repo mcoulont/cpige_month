@@ -55,8 +55,8 @@ char *getDayName(time_t when)
   char *dayName;
 
   mytime = getLocalTime(&when);
-  dayName = (char *)calloc(20, 1); /* Large vision! */
-  strftime(dayName, 20, "%A", mytime);
+  dayName = (char *)calloc(8, 1); 
+  strftime(dayName, 8, "%d%m%Y", mytime);
   free(mytime);
   return dayName;
 }
@@ -86,8 +86,8 @@ char *getDayName(time_t when)
   
   /* GetLocalTime(&Time); */
   UnixTimeToSystemTime(when, &Time);
-  dayName = (char *)malloc(20);
-  if (GetDateFormat(LOCALE_USER_DEFAULT, 0, &Time, "dddd", dayName, 20) == 0)
+  dayName = (char *)malloc(8);
+  if (GetDateFormat(LOCALE_USER_DEFAULT, 0, &Time, "ddMMyyyy", dayName, 8) == 0)
   {
     printf("Error in GetDateFormat.\n");
     return NULL;
