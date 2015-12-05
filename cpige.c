@@ -482,7 +482,7 @@ int main (int argc, char **argv)
           switch (cmdLine->intervalType)
           {
             case IVAL_HOUR:
-              /* Il me faut l'heure d'arrivée théorique, en seconde, du stream */
+              /* Il me faut l'heure d'arrivÃ©e thÃ©orique, en seconde, du stream */
               tmp1 = (getCloserInterval(getHour(), cmdLine->interval) + cmdLine->interval);
               stop_s = ((tmp1 * 3600) + (nowTmp - ((getHour()*3600) - getMinute() * 60) - getSec()));
               percentage = ((float)(1.0 - (((float)stop_s - (float)nowTmp) / ((float)cmdLine->interval*3600.0))) * 100.0);
@@ -821,7 +821,7 @@ char *readMeta(int serversocket)
 
 
 /* Lorsque le serveur envoie: "StreamTitle='TITREZIK';"
- * On ne récupère avec cette fonction que TITREZIK.
+ * On ne rÃ©cupÃ¨re avec cette fonction que TITREZIK.
  */
 
 char *getTitle(char *titleString)
@@ -1441,8 +1441,8 @@ void checkWeekBackup()
     return;
 
   when = time((time_t *) NULL);
-  /* One week => 7 days ! */
-  for (i = 0; i < 7; i++)
+  /* One month => 31 days ! */
+  for (i = 0; i < 31; i++)
   {
     dayName = getDayName((time_t)(when+(i*86400)));
     
