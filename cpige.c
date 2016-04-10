@@ -213,7 +213,9 @@ int main (int argc, char **argv)
    * exists, and check disk space
    */
   
-  checkWeekBackup();
+  // month start
+  //checkWeekBackup();
+  // month end
 
   /* Start time, for uptime calculation */
   start_time = time((time_t *)NULL);
@@ -263,6 +265,10 @@ int main (int argc, char **argv)
   
   while (1)
   {
+    // month start
+    checkWeekBackup();
+    // month end
+    
     /* For select() it's a global struct. */
     timeout.tv_sec = SOCKET_TIMEOUT;
     timeout.tv_usec = 0;
@@ -1441,17 +1447,20 @@ void checkWeekBackup()
     return;
 
   when = time((time_t *) NULL);
-  /* One month => 31 days ! */
-  for (i = 0; i < 31; i++)
-  {
-    dayName = getDayName((time_t)(when+(i*86400)));
+  /* One week => 7 days ! */
+  // month start
+  //for (i = 0; i < 7; i++)
+  //{ 
+    //dayName = getDayName((time_t)(when+(i*86400)));
+    dayName = getDayName(when);
+  // month end
     
     dirNameLen = strlen(cmdLine->dir) + strlen(dayName) + 2;
     dirName = (char *) memory_allocation(dirNameLen);
     snprintf(dirName, dirNameLen, "%s%s/", cmdLine->dir, dayName);
     (void)free(dayName);
 
-    /* Create output dir if does not exists! */
+    /* Create output dir if does not exist! */
     if (( weekdir = opendir(dirName)) == NULL)
     {
       _ERROR("Unable to open %s for writing\n", dirName);
@@ -1473,7 +1482,9 @@ void checkWeekBackup()
     }
 
     (void)free(dirName);
-  }
+  // month start
+  //}
+  // month end
 }
 
 #ifdef SOLARIS
