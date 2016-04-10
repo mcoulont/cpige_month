@@ -55,8 +55,12 @@ char *getDayName(time_t when)
   char *dayName;
 
   mytime = getLocalTime(&when);
+  // month start
+  //dayName = (char *)calloc(20, 1); /* Large vision! */
+  //strftime(dayName, 20, "%A", mytime);
   dayName = (char *)calloc(9, 1); 
   strftime(dayName, 9, "%d%m%Y", mytime);
+  // month end
   free(mytime);
   return dayName;
 }
